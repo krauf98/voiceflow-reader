@@ -1,0 +1,9 @@
+flask
+flask-cors
+pdfplumber
+pypdf
+edge-tts
+langdetect
+aiofiles
+gTTS
+gunicorn

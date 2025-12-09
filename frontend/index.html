@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoiceFlow - PDF Reader</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Amiri:wght@400;700&family=Inter:wght@400;600;700&family=Noto+Sans+Arabic:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0f172a">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="logo"><i class="fa-solid fa-wave-square"></i> VoiceFlow</div>
+        <button class="settings-btn" title="Settings"><i class="fa-solid fa-gear"></i></button>
+    </header>
+
+    <main>
+        <!-- State 1: Upload -->
+        <div class="upload-container" id="upload-view">
+            <div class="upload-icon">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+            </div>
+            <h2>Upload your PDF</h2>
+            <p style="color: var(--text-secondary); margin: 0.5rem 0 1.5rem;">Drag & drop or browse to start listening
+            </p>
+            <button class="btn-primary" onclick="document.getElementById('file-input').click()">Browse Files</button>
+            <button class="btn-secondary" id="paste-text-btn">Or Paste Text</button>
+            <input type="file" id="file-input" accept=".pdf" style="display: none;">
+
+            <div id="text-input-container" class="hidden">
+                <textarea id="direct-text-input" placeholder="Paste your text here..."></textarea>
+                <div class="text-input-actions">
+                    <button id="submit-text-btn" class="btn-primary" style="margin-top: 0;">Read Text</button>
+                    <button id="cancel-text-btn" class="btn-secondary" style="margin-top: 0;">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- State 2: Reader (Mock Content) -->
+        <div class="reader-view" id="reader-view">
+            <h1>Introduction to Quantum Physics</h1>
+            <p>
+                Quantum mechanics is a fundamental theory in physics that provides a description of the physical
+                properties of nature at the scale of atoms and subatomic particles.
+                <span class="highlighted-word">It is the foundation of all quantum physics including quantum chemistry,
+                    quantum field theory, quantum technology, and quantum information science.</span>
+            </p>
+            <p>
+                Classical physics, the collection of theories that existed before the advent of quantum mechanics,
+                describes many aspects of nature at an ordinary (macroscopic) scale, but is not sufficient for
+                describing them at small (atomic and subatomic) scales.
+            </p>
+            <p>
+                Most theories in classical physics can be derived from quantum mechanics as an approximation valid at
+                large (macroscopic) scale.
+            </p>
+        </div>
+    </main>
+
+    <!-- Player Bar -->
+    <div class="player-bar hidden" id="player-bar">
+        <div class="controls">
+            <button class="control-btn" id="prev-btn" title="Back 10s"><i
+                    class="fa-solid fa-backward-step"></i></button>
+            <button class="control-btn play-btn"><i class="fa-solid fa-play"
+                    style="color: white; margin-left: 2px;"></i></button>
+            <button class="control-btn" id="next-btn" title="Forward 10s"><i
+                    class="fa-solid fa-forward-step"></i></button>
+        </div>
+
+        <div class="slider-container">
+            <div class="progress-bar" id="progress-container">
+                <div class="progress-fill"></div>
+            </div>
+            <div
+                style="display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-secondary); margin-top: 5px;">
+                <span id="time-current">00:00</span>
+                <span id="time-total">00:00</span>
+            </div>
+        </div>
+
+        <div class="meta-controls">
+            <select class="speed-select" title="Speed">
+                <option value="0.5">0.5x</option>
+                <option value="1.0" selected>1.0x</option>
+                <option value="1.5">1.5x</option>
+                <option value="2.0">2.0x</option>
+            </select>
+            <select class="engine-select" title="Voice Engine"
+                style="background: transparent; border: 1px solid var(--border-color); color: var(--text-primary); padding: 0.25rem; border-radius: 0.25rem; cursor: pointer; margin-right: 5px;">
+                <option value="edge">Edge (Best)</option>
+                <option value="google">Google</option>
+                <option value="system">System (Offline)</option>
+            </select>
+            <select class="lang-select" title="Language">
+                <option value="en">EN</option>
+                <option value="es">ES</option>
+                <option value="fr">FR</option>
+                <option value="de">DE</option>
+                <option value="ar">AR</option>
+            </select>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+
+</html>

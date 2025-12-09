@@ -1,0 +1,5 @@
+flask
+pdfminer.six
+edge-tts
+langdetect
+aiofiles

@@ -1,0 +1,300 @@
+:root {
+    --bg-color: #0f172a;
+    /* Deep Slate/Charcoal */
+    --surface-color: #1e293b;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --accent-color: #3b82f6;
+    /* Electric Blue */
+    --accent-glow: rgba(59, 130, 246, 0.5);
+    --glass-bg: rgba(30, 41, 59, 0.8);
+    --border-color: #334155;
+    --font-main: 'Inter', 'Noto Sans Arabic', 'Cairo', 'Amiri', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: var(--font-main);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Header */
+header {
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    background: var(--surface-color);
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    text-shadow: 0 0 10px var(--accent-glow);
+}
+
+.settings-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: color 0.2s;
+}
+
+.settings-btn:hover {
+    color: var(--text-primary);
+}
+
+/* Main Content */
+main {
+    flex: 1;
+    position: relative;
+    overflow-y: auto;
+    /* Allow scrolling if content is tall */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+/* Drop Zone */
+.upload-container {
+    text-align: center;
+    padding: 3rem;
+    border: 2px dashed var(--border-color);
+    border-radius: 1rem;
+    background: var(--surface-color);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.upload-container:hover {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 20px var(--accent-glow);
+}
+
+.upload-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+}
+
+.btn-primary {
+    background-color: var(--accent-color);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    margin-top: 1rem;
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+.btn-primary:active {
+    transform: scale(0.98);
+}
+
+/* Reading View (Hidden by default) */
+.reader-view {
+    display: none;
+    /* Toggled via JS */
+    width: 100%;
+    max-width: 800px;
+    height: 100%;
+    overflow-y: auto;
+    padding: 2rem;
+    line-height: 1.8;
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    font-family: 'Amiri', 'Cairo', 'Noto Sans Arabic', sans-serif;
+}
+
+.reader-view p {
+    font-family: 'Amiri', 'Cairo', 'Noto Sans Arabic', sans-serif;
+    margin-bottom: 1rem;
+}
+
+.highlighted-word {
+    color: var(--text-primary);
+    background-color: rgba(59, 130, 246, 0.2);
+    border-radius: 3px;
+    padding: 0 2px;
+    box-shadow: 0 0 10px var(--accent-glow);
+}
+
+/* Player Bar */
+.player-bar {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 600px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+.controls {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.control-btn {
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.play-btn {
+    width: 3rem;
+    height: 3rem;
+    background: var(--accent-color);
+    border-radius: 50%;
+    box-shadow: 0 0 15px var(--accent-glow);
+}
+
+.slider-container {
+    flex: 1;
+    margin: 0 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 4px;
+    background: var(--border-color);
+    border-radius: 2px;
+    position: relative;
+    cursor: pointer;
+}
+
+.progress-fill {
+    width: 30%;
+    /* Mock progress */
+    height: 100%;
+    background: var(--accent-color);
+    border-radius: 2px;
+}
+
+.meta-controls {
+    display: flex;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.speed-select {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+}
+
+.lang-select {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    width: 60px;
+}
+
+/* Fix Dropdown Options Visibility */
+.speed-select option,
+.lang-select option,
+.engine-select option {
+    background: var(--surface-color);
+    color: var(--text-primary);
+}
+
+/* Utility to hide/show */
+.hidden {
+    display: none !important;
+}
+
+/* Direct Text Input Styles */
+.btn-secondary {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-left: 10px;
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--text-secondary);
+}
+
+#text-input-container {
+    width: 100%;
+    margin-top: 20px;
+}
+
+#direct-text-input {
+    width: 100%;
+    height: 200px;
+    background: var(--surface-light);
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    color: var(--text-primary);
+    font-size: 1rem;
+    resize: vertical;
+    margin-bottom: 1rem;
+    font-family: 'Inter', sans-serif;
+    direction: auto;
+    /* Auto-detect LTR or RTL */
+    text-align: start;
+}
+
+#direct-text-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.text-input-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}

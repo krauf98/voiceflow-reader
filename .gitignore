@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+venv/
+.env
+.DS_Store
+backend/uploads/
+backend/audio_cache/
